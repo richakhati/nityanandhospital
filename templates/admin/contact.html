@@ -1,0 +1,100 @@
+{% extends 'admin/global.html' %}
+{% block Body %}
+
+<div class="container">
+    <div class="row"><div class="col-md-6"><form action="/contact" method="post" enctype="multipart/form-data">
+         
+        
+        <label for="exampleFormControlInput1" class="form-label">Title</label>
+        <input type="text" class="form-control" name="con_title" value="{{fetchcon.con_title}}">
+        <label for="exampleFormControlInput1" class="form-label">Contact NO.</label>
+        <input type="text" class="form-control" name="con_num" value="{{fetchcon.con_num}}">
+        <label for="exampleFormControlInput1" class="form-label">Address</label>
+        <input type="text" class="form-control" name="con_add" value="{{fetchcon.con_add}}">
+        <label for="exampleFormControlInput1" class="form-label">Query Number</label>
+        <input type="text" class="form-control" name="query_num" value="{{fetchcon.query_num}}">
+        <label for="exampleFormControlInput1" class="form-label">Time</label>
+        <input type="text" class="form-control" name="time" value="{{fetchcon.time}}">
+        
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Image</label>
+          <input class="form-control" name="img" value="{{fetchcon_img}}" type="file" id="formFile">
+        </div>
+       
+        <button type="submit" class="btn btn-dark">Submit</button> <br>
+    </form></div>
+    
+
+    <div class="col-md-6">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sr.No</th>
+            <th scope="col">Title</th>
+            <th scope="col">Contact Number</th>
+            <th scope="col">Address</th>
+            <th scope="col">Query Number</th>
+            <th scope="col">Time</th>
+            <th scope="col">Image</th>
+            
+            <th scope="col">Actions</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+    
+            {% for i in fetchcon  %}
+            <tr>
+                            
+              <th scope="row">{{loop.index}}</th>
+              <th scope="row">{{i.con_title}}</th>
+              <th scope="row">{{i.con_num}}</th>
+              <th scope="row">{{i.con_add}}</th>
+              <th scope="row">{{i.query_num}}</th>
+              <th scope="row">{{i.time}}</th>
+                       
+              <td><img src={{i.img}} alt="" width="44px"></td> 
+              
+              
+              
+              
+              <td><a href="/contactedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>                       
+              
+              </td>
+                                
+              </tr>
+            {% endfor %}
+                           
+           
+           
+          
+                          
+            
+        </tbody>
+      </table></div>
+    </div>
+</div>
+</div>      
+    
+  </div>
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

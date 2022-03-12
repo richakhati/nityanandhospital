@@ -1,0 +1,38 @@
+{% extends 'admin/global.html' %}
+{% block Body %}
+
+
+<div class="container">
+
+    <form action="/email" method="post" enctype="multipart/form-data">
+         
+       
+        <label for="exampleFormControlInput1" class="form-label"> Your Name</label>
+        <input type="text" class="form-control" name="name" >
+        <label for="exampleFormControlInput1" class="form-label">Mail</label>
+        <input type="mail" class="form-control" name="mail" >
+        <label for="exampleFormControlInput1" class="form-label">Phone No.</label>
+        <input type="text" class="form-control" name="phone" >
+        <label for="exampleFormControlInput1" class="form-label"> Your Doctor</label>
+        <select class="form-control" aria-label="Default select example" name="doctor">
+          <option selected>Select Your Doctor</option>
+          {% for i in fetch %}
+          <option value="{{i.doc_name}}">{{i.doc_name}}</option>
+          {% endfor %} 
+         </select></br>
+        <label for="exampleFormControlInput1" class="form-label">Date of Appointment</label>
+        <input type="date" class="form-control" name="date" >
+        <label for="exampleFormControlInput1" class="form-label">Subject</label>
+        <input type="text" class="form-control" name="subject" >
+        
+         
+        <button type="submit" class="btn btn-dark">submit</button> <br>
+    </form>
+  </div>
+
+</div>
+</div>
+  
+
+
+  {% endblock %}  

@@ -1,0 +1,25 @@
+{% extends 'admin/global.html' %}
+{% block Body %}
+
+
+<div class="container">
+    <div class="row"><div class="col-md-6"><form action="/direction"  method="post" enctype="multipart/form-data">
+
+    <input type="hidden" id="id" name="id" value="{{fetchmap.id}}">
+    <label for="exampleFormControlInput1" class="form-label">Direction Link</label>
+    <input type="text" class="form-control" name="link" value="{{fetchmap.link}}">
+    
+    <iframe src="{{fetchmap.link}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <button type="submit" class="btn btn-dark">Submit</button> <br>
+
+</form></div>
+</div>
+
+
+
+</div>
+</div>
+
+
+
+    {% endblock %}
