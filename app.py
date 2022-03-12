@@ -178,6 +178,13 @@ def depted():
     fetchdep= models.Departments.query.all()
     return settings.render_template('admin/deptedit.html', fetchdept=fetchdept)
 
+@app.route('/deptshow', methods=['GET', 'POST'])
+def show():
+
+    fetchdep= models.Departments.query.all()
+    return settings.render_template('fe/about.html', fetchdep=fetchdep)
+    
+
 ######################### DEPARTMENT ENDS HERE ########################
 
 ######################## PATIENT SERVICES STARTS HERE ######################
