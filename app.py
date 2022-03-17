@@ -180,9 +180,10 @@ def depted():
 
 @app.route('/deptshow', methods=['GET', 'POST'])
 def show():
-
+    id= settings.request.args['id']
     fetchdep= models.Departments.query.all()
-    return settings.render_template('fe/about.html', fetchdep=fetchdep)
+    fetchdep1= models.Departments.query.filter_by(id=id).first()
+    return settings.render_template('fe/departments.html', fetchdep=fetchdep,fetchdep1=fetchdep1)
     
 
 ######################### DEPARTMENT ENDS HERE ########################
@@ -223,6 +224,8 @@ def pedit():
     fetchpat= models.Pservices.query.filter_by(id=id).first()
     fetchpatient= models.Pservices.query.all()
     return settings.render_template('admin/pservedit.html', fetchpat=fetchpat) 
+
+
 
             ##############BILLING ENDS###############
 
@@ -314,7 +317,12 @@ def abt():
         title= settings.request.form['title']
         text= settings.request.form['ckeditor']
         file = settings.request.files['file']
-        fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(file.filename)
+        file.seek(0,settings.os.SEEK_END)
+        if file.tell() == 0:
+            pass
+        else:
+            file.seek(0)
+            fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(file.filename)
         file.save(fname)
         id= settings.request.form['id']
         fetch= models.Aboutus.query.filter_by(id=id).first()
@@ -331,54 +339,50 @@ def abt():
 
     return settings.render_template('admin/aboutus.html', fetch=fetch, fetchabout=fetchabout    )
 
+@app.route('/aboutshow', methods=['GET','POST'])
+def abtshow():
+    id= settings.request.args['id']
+    fetch=models.Aboutus.query.filter_by(id=id).first()
+    fetchabout= models.Aboutus.query.all()
+
+    return settings.render_template('fe/about.html', fetch=fetch, fetchabout=fetchabout)    
+
 
 ############################# ABOUT ENDS ###########################
 
 ############################ CONTACT US ##########################
+@app.route('/consmtp', methods=['GET', 'POST'])
+def consmtp():
+    if settings.request.method=='POST':
+        name= settings.request.form['name']
+        mail= settings.request.form['mail']
+        message= settings.request.form['message']
+        
+        msg  = settings.Message('Hello', sender = app.config['MAIL_USERNAME'], recipients =['riiichakhati18@gmail.com'])
+        msg.body = "Name: "+ name + "\nEmail: "+ mail +"\nWrite your message: "+ message 
+        
+        settings.mail.send(msg)
+        fetchcon= models.Contactus.query.all()
+        return settings.render_template('admin/contact.html', fetchcon=fetchcon)
+
 @app.route('/contact', methods=['GET', 'POST'])
-def contact():
+def con():
     if settings.request.method=='POST':
-        img= settings.request.files['img']
-        fname=  'static/admin-assets/img/nnh/'+settings.secure_filename(img.filename)
+        con_title= settings.request.form('con_title')
+        img= settings.request.files('img')
+        fname= 'static/admin-assets/img/nnh'+settings.secure_filename(img.filename)
         img.save(fname)
-        con_title= settings.request.form['con_title']
-        con_num= settings.request.form['con_num']
-        con_add= settings.request.form['con_add']
-        query_num= settings.request.form['query_num']
-        time= settings.request.form['time']
-        info= models.Contactus(img=fname, con_num=con_num, con_add=con_add, query_num=query_num, time=time, con_title=con_title)
-        settings.db.session.add(info)
-        settings.db.session.commit()
-
-    fetchcon= models.Contactus.query.all()
-    return settings.render_template('admin/contact.html', fetchcon=fetchcon)
-
-@app.route('/contactedit', methods=['GET', 'POST'])
-def editcon():
-    if settings.request.method=='POST':
-        img= settings.request.files['img']
-        fname=  'static/admin-assets/img/nnh/'+settings.secure_filename(img.filename)
-        img.save(fname)
-        con_title= settings.request.form['con_title']
-        con_num= settings.request.form['con_num']
-        con_add= settings.request.form['con_add']
-        query_num= settings.request.form['query_num']
-        time= settings.request.form['time']
-        id= settings.request.form['id']
+        id= settings.request.form('id')
         fetchcontact= models.Contactus.query.filter_by(id=id).first()
         fetchcontact.con_title=con_title
-        fetchcontact.con_num=con_num
-        fetchcontact.con_add=con_add
-        fetchcontact.query_num=query_num
-        fetchcontact.time=time
-        fetchcontact.img=fname
+        fetchcontact.img=img
         settings.db.session.commit()
         return settings.redirect('/contact')
 
-    id= settings.request.args['id']
-    fetchcontact= models.Contactus.query.filter_by(id=id).first()
-    fetchcon= models.Contactus.query.all()
-    return settings.render_template('admin/contactedit.html', fetchcontact=fetchcontact, fetchcon=fetchcon)
+    
+    fetchcontact= models.Contactus.query.filter_by(id=1).first()
+    
+    return settings.render_template('admin/contactedit.html', fetchcontact=fetchcontact)
 
 @app.route('/direction', methods=['GET', 'POST'])
 def direct():

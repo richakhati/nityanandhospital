@@ -17,91 +17,31 @@
                 <div class="mb-3 pt-5 tab">
                     <h2 class="h6 tablinks" onclick="openTab(event, 'about')" id="defaultOpen">About</h2>
                     <ul class="list-unstyled probootstrap-light mb-4">
+                        {% for i in fetchabout %}
                         <li>
-                            <a href="#missionStatement" class="tablinks" onclick="openTab(event, 'missionStatement')">
-                                Mission Statement</a>
-                        </li>
-                        <li>
-                            <a href="#vision" class="tablinks" onclick="openTab(event, 'vision')">Vision</a>
-                        </li>
-                        <li>
-                            <a href="#coreValues" class="tablinks" onclick="openTab(event, 'coreValues')">
-                                Core Values</a>
-                        </li>
+                            <a href="/aboutshow?id={{i.id}}">{{i.title}}</a>
+                        </li>  
+                        {% endfor %}
+                        
+                       
                     </ul>
                 </div>
             </div>
             <div class="col-md-9 pl-md-5 pb-5 pl-0 probootstrap-inside">
                 <div id="about" class="tabcontent">
-                    <h1 class="mt-4 mb-4">About Us</h1>
+                    <h1 class="mt-4 mb-4">{{fetchabout.title}}</h1>
                     <div class="col-md-12">
-                        <img src="images/about_us.jpg" style="max-width: 100%;">
+                        <img src="{{fetch.file_au}}" style="max-width: 100%;">
+                        <h1 class="mt-4 mb-4">{{fetch.title}}</h1>
+                        <p>{{fetch.text_au|safe}}</p>
                     </div>
                     <br>
-                    <p>Nityanand ICCU & Nursing Home was established on December 6th, 1992 by founding partners – Dr
-                        Harish Bhatt & Dr Harish Shetty. Initially it was started with OPD, IPD, ICCU and 24 hour
-                        emergency care. We had the aim of providing optimal yet affordable health care facilities
-                        including ICCU to the local community of Vile Parle & Andheri.</p>
-                    <p>Since its inception we are treating over 10,000 out-patients, 1200 in-patients and 250 critical
-                        care cases annually. We have grown not just in mere size and patient bed capacity but also in
-                        level of quality of care. We have emerged to be one of the leading mid-size health care
-                        providers in Western Mumbai.</p>
-                    <p>For nearly 3 decades, we have been forerunners in providing the best quality of medical care to
-                        the resident population. The fact that a sizeable proportion of cases continue to be on our
-                        services inspite of migrating to distant locations is a testament of the warm services provided
-                        by our entire team.</p>
-                    <p>Since 2018, we have introduced Cancer & Otorhinolaryngology (ENT) services in our hospital. With
-                        entry of young capable professionals, we now look forward to serving the population in Cancer –
-                        whose incidence is rising at an alarming rate and ENT – a speciality of its own which is gaining
-                        increasing focus.</p>
-                    <p>With widening horizons and newer experts in our team, our dream continues to remain one – Quality
-                        Health Care at Affordable Prices.</p>
-                    <p>Jai Hind !!</p>
+                   
                 </div>
-                <div id="missionStatement" class="tabcontent">
-                    <h1 class="mt-4 mb-4">Mission Statement</h1>
-                    <p>We are dedicated to consistently enrich the quality of life of all our patients and visitors by
-                        providing excellent and accessible health services to all in the need of care in a diverse urban
-                        community regardless of the status and ability to pay. We are devoted to providing a resource
-                        for
-                        compassionate speciality and super speciality services; and to be innovators in integrated
-                        health
-                        facilities. We are committed to develop co-operative relationships with other healthcare
-                        providers
-                        and promotion of wellness through health education and awareness.</p>
-                </div>
-                <div id="vision" class="tabcontent">
-                    <h1 class="mt-4 mb-4">Vision</h1>
-                    <p>Delivering comprehensive yet optimal care to all individuals, taking particular consideration of
-                        the needs of the vulnerable population in an ethically and financially responsible manner.</p>
-                    <p>To promote healthful habits and in turn a happy society.</p>
-                </div>
-                <div id="coreValues" class="tabcontent">
-                    <h1 class="mt-4 mb-4">Core Values</h1>
-                    <p>Our team is like a family upholding highest regard for dignity, integrity and diversity.
-                        We reflect these core values in our daily behaviour and work practices:</p>
-                    <ul>
-                        <li style="text-align: justify">Respect: We serve all individuals of the populace with highest
-                            esteem. We honour the efforts of all our team members.
-                        </li>
-                        <li style="text-align: justify">Professionalism: We apply a high degree of medical, nursing and
-                            technical competence. We strive for excellence in optimal standards of care, safety and
-                            service
-                            by adopting innovation and persistent improvement. We trust each other and communicate
-                            authentically.
-                        </li>
-                        <li style="text-align: justify">Diversity: We respect the dynamic nature of our society and we
-                            honour their ethnic, religious and cultural differences.
-                        </li>
-                        <li style="text-align: justify">Compassion: We empathize with the needs of others.</li>
-                        <li style="text-align: justify">Ethics: We demonstrate integrity and loyalty with highest regard
-                            for confidentiality. We hold ourselves and others accountable.
-                        </li>
-                        <li style="text-align: justify">Cost-effectiveness: We promote affordable, responsible and high
-                            quality health care.
-                        </li>
-                    </ul>
-                </div>
+                
+                
+                    
+                
             </div>
         </div>
     </div>

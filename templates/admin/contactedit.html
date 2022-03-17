@@ -2,99 +2,58 @@
 {% block Body %}
 
 <div class="container">
-    <div class="row"><div class="col-md-6"><form action="/contactedit" method="post" enctype="multipart/form-data">
+
+    <div class="row"><div class="col-md-6"><form action="/contact" method="post" enctype="multipart/form-data">
          
-        <input type="hidden" id="id" name="id" value="{{fetchcontact.id}}">
+        <input type="hidden" id= 'id' name= 'id' value="{{fetchcontact.id}}">
+       
         <label for="exampleFormControlInput1" class="form-label">Title</label>
         <input type="text" class="form-control" name="con_title" value="{{fetchcontact.con_title}}">
-        <label for="exampleFormControlInput1" class="form-label">Contact NO.</label>
-        <input type="text" class="form-control" name="con_num" value="{{fetchcontact.con_num}}">
-        <label for="exampleFormControlInput1" class="form-label">Address</label>
-        <input type="text" class="form-control" name="con_add" value="{{fetchcontact.con_add}}">
-        <label for="exampleFormControlInput1" class="form-label">Query Number</label>
-        <input type="text" class="form-control" name="query_num" value="{{fetchcontact.query_num}}">
-        <label for="exampleFormControlInput1" class="form-label">Time</label>
-        <input type="text" class="form-control" name="time" value="{{fetchcontact.time}}">
-        
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Image</label>
-          <input class="form-control" name="img" value="{{fetchcontact_img}}" type="file" id="formFile">
-        </div>
-       
-        <button type="submit" class="btn btn-dark">Submit</button> <br>
-    </form></div>
-    
-
-    <div class="col-md-6">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Sr.No</th>
-            <th scope="col">Title</th>
-            <th scope="col">Contact Number</th>
-            <th scope="col">Address</th>
-            <th scope="col">Query Number</th>
-            <th scope="col">Time</th>
-            <th scope="col">Image</th>
-            
-            <th scope="col">Actions</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-    
-            {% for i in fetchcon  %}
-            <tr>
-                            
-              <th scope="row">{{loop.index}}</th>
-              <th scope="row">{{i.con_title}}</th>
-              <th scope="row">{{i.con_num}}</th>
-              <th scope="row">{{i.con_add}}</th>
-              <th scope="row">{{i.query_num}}</th>
-              <th scope="row">{{i.time}}</th>
-                       
-              <td><img src={{i.img}} alt="" width="44px"></td> 
-              
-              
-              
-              
-              <td><a href="/contactedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>                       
-              
-              </td>
-                                
-              </tr>
-            {% endfor %}
-                           
-           
-           
+            <label for="exampleFormControlInput1" class="form-label">Image</label>
+            <input class="form-control" name="img" value="{{fetchcontact.img}}"  type="file" id="formFile">
+          </div>
           
-                          
-            
-        </tbody>
-      </table></div>
-    </div>
+        <button type="submit" class="btn btn-dark">submit</button> <br>
+    </form></div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sr.No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+        
+              
+                {% for i in fetchcontact  %}
+                <tr>
+                                
+                    <th scope="row">{{loop.index}}</th>
+                    
+                    
+                    
+                    <td>{{i.con_title}}</td>
+                    
+                    <td><img src="{{i.img}}" alt="" width="44px"></td> 
+                     
+                    <td><a href="/contact?id={{i.id}}"><i class="fas fa-edit"></i></a></td>
+                           
+                    
+                    </td>
+                                      
+                    </tr>
+                {% endfor %}          
+                
+                              
+              
+            </tbody>
+          </table></div>
 </div>
-</div>      
-    
-  </div>
 
 
-    {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% endblock %}

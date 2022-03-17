@@ -87,12 +87,13 @@ class Contactus(settings.db.Model):
     id= settings.db.Column(settings.db.Integer, primary_key= True)
     img= settings.db.Column(settings.db.String)
     con_title= settings.db.Column(settings.db.String)
-    con_num= settings.db.Column(settings.db.Integer)
-    con_add= settings.db.Column(settings.db.String)
     con_map= settings.db.Column(settings.db.String)
     query_num= settings.db.Column(settings.db.Integer)
     link= settings.db.Column(settings.db.String)
-    time= settings.db.Column(settings.db.String)
+    name= settings.db.Column(settings.db.String)
+    email= settings.db.Column(settings.db.String)
+    message= settings.db.Column(settings.db.String)
+    
 
 ################ CONTACT US ENDS  ####################
 

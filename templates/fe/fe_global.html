@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>About - Nityanand Hospitals</title>
+    <title>Nityanand Hospitals</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Nityanand Hospitals"/>
@@ -73,17 +73,26 @@
                 <li class="nav-item">
                     <a href="index.php" class="nav-link pl-0">Home</a>
                 </li>
-                <li class="nav-item active">
-                    <a href="about.html" class="nav-link">About</a>
+                <li class="nav-item ">
+                    <a href="/aboutshow?id=1" class="nav-link">About</a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-primary"
+                         aria-labelledby="navbarDropdownMenuLink">
+                        {% for i in fetchabout %}
+                        <a class="dropdown-item" href="/aboutshow?id={{i.id}}">{{i.title}}</a>  
+                        {% endfor %}
+                             
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="departments.html" class="nav-link">Departments
+                    <a href="/deptshow?id=1" class="nav-link">Departments
                         <i class="icon-chevron-down" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                          aria-labelledby="navbarDropdownMenuLink">
-                  
-                         <a class="dropdown-item" href="/deptshow?id={{i.id}}">Internal Medicine</a> 
+                        {% for i in fetchdep %}
+                        <a class="dropdown-item" href="/deptshow?id={{i.id}}">{{i.dept_title}}</a>  
+                        {% endfor %}
+                          
                       
                         
                     </div>
@@ -130,7 +139,7 @@
         <div class="row">
             <div class="col-md-3">
                 <a href="index.php" class="mr-auto">
-                    <img src="images/logo.png" class="hires">
+                    <img src="static/assets/images/logo.png" class="hires">
                 </a>
             </div>
             <div class="col-md-9">
@@ -187,7 +196,7 @@
             </div>
             <div class="col-md-4">
                 <h3 class="heading">Accrediation</h3>
-                <img src="images/acc.png">
+                <img src="static/assets/images/acc.png">
             </div>
         </div>
         <!-- END row -->
@@ -196,7 +205,7 @@
                 <p>
                     <small>&copy; 2019 Nityanand Hospital. All Rights Reserved.</small>
                     <a href="http://kapsicumweb.com" target="_blank">
-                        <img style="float: right;" src="images/white-kapsicumweb.png" alt="">
+                        <img style="float: right;" src="static/assets/images/white-kapsicumweb.png" alt="">
                     </a>
                 </p>
             </div>
@@ -205,13 +214,13 @@
 </footer>
 
 <!-- loader -->
-<div id="probootstrap-loader" class="show fullscreen">
+<!-- <div id="probootstrap-loader" class="show fullscreen">
     <svg class="circular" width="48px" height="48px">
         <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
         <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
                 stroke="#32609e"/>
     </svg>
-</div>
+</div> -->
 
 <script src="js/jquery-3.2.1.min.js" type="361cb8c36f4963d17deb1e8e-text/javascript"></script>
 <script src="js/popper.min.js" type="361cb8c36f4963d17deb1e8e-text/javascript"></script>

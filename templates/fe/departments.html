@@ -1,0 +1,42 @@
+{% extends 'fe/fe_global.html' %}
+{% block body %}
+
+
+
+
+<section class="bg-image" style="background-image: url('images/bg_1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-5">
+                <h1 class="display-4"><br>Departments</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="probootstrap-services">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-3 pb-5 probootstrap-aside-stretch-left probootstrap-inside">
+                <div class="mb-3 pt-5">
+                    <h2 class="h6">Departments</h2>
+                    <ul class="list-unstyled probootstrap-light mb-4">
+                        {% for i in fetchdep %}
+                        <li>
+                            <a href="/deptshow?id={{i.id}}">{{i.dept_title}}</a>
+                        </li>
+                        {% endfor %}
+                       
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 pl-md-5 pb-5 pl-0 probootstrap-inside">
+                <h1 class="mt-4 mb-4">{{fetchdep1.dept_title}}</h1>
+                <p style="text-align: justify">{{fetchdep1.dept_text|safe}}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} 
