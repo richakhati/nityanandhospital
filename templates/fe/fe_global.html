@@ -98,15 +98,16 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link">Services
+                    <a href="/serviceshow?id=1" class="nav-link">Services
                         <i class="icon-chevron-down" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                          aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="opd.html">OPD</a>
-                        <a class="dropdown-item" href="ipd.html">IPD</a>
-                        <a class="dropdown-item" href="iccu.html">ICCU</a>
-                        <a class="dropdown-item" href="emergency.html">Emergency Care</a>
+                         {% for i in fetch %}
+                         <a class="dropdown-item" href="/serviceshow?id={{i.id}}">{{i.serv_title}}</a>
+                         {% endfor %}
+                       
+                       
                     </div>
                 </li>
                 <li class="nav-item">
@@ -123,8 +124,15 @@
                         <a class="dropdown-item" href="vistors_rights.html">Visitors Rights &amp; Responsibilities</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a href="healthy_education.html" class="nav-link">Health Education</a>
+                <li class="nav-item ">
+                    <a href="/healthshow?id=1" class="nav-link">Health Education</a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-primary"
+                         aria-labelledby="navbarDropdownMenuLink">
+                        {% for i in fetchedu %}
+                        <a class="dropdown-item" href="/healthshow?id={{i.id}}">{{i.title}}</a>  
+                        {% endfor %}
+                             
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="contact.php" class="nav-link">Contact Us</a>

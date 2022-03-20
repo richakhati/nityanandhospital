@@ -138,6 +138,14 @@ def serve():
     fetch= models.Service.query.all()
     return settings.render_template('admin/servedit.html', fetch=fetch,fetch1=fetch1)
 
+@app.route('/serviceshow', methods=['GET','POST'])
+def servshow():
+    id= settings.request.args['id']
+    fetch1= models.Service.query.filter_by(id=id).first()
+    fetch= models.Service.query.all()
+
+    return settings.render_template('fe/fe_service.html', fetch=fetch, fetch1=fetch1)    
+
 ########################## SERVICES ENDS ##########################
 
 ######################### DEPARTMENTS STARTS ######################
@@ -307,7 +315,14 @@ def educat():
     fetched= models.Healthedu.query.filter_by(id=id).first()
     fetchedu= models.Healthedu.query.all()
     return settings.render_template('admin/healthedu.html', fetched=fetched, fetchedu=fetchedu)
+    
+@app.route('/healthshow', methods=['GET','POST'])
+def healshow():
+    id= settings.request.args['id']
+    fetched= models.Healthedu.query.filter_by(id=id).first()
+    fetchedu= models.Healthedu.query.all()
 
+    return settings.render_template('fe/healthy_education.html', fetched=fetched, fetchedu=fetchedu)    
 
 ########################### ABOUT STARTS ###########################
 

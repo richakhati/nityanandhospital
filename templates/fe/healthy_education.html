@@ -1,0 +1,49 @@
+{% extends 'fe/fe_global.html' %}
+{% block body %}
+
+<section class="bg-image" style="background-image: url('images/bg_1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-5">
+                <h1 class="display-4"><br>Health Education</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="probootstrap-services">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-3 pb-5 probootstrap-aside-stretch-left probootstrap-inside">
+                <div class="mb-3 pt-5 tab">
+                    <h2 class="h6">Health Education</h2>
+                    <ul class="list-unstyled probootstrap-light mb-4">
+                        <li>
+                            {% for i in fetchedu %}
+                            <a href="/healthshow?id={{i.id}}"> {{i.title}}</a>
+                            {% endfor %}
+                           
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 pl-md-5 pb-5 pl-0 probootstrap-inside">
+                <!--<div>
+                    <h1 class="mt-4 mb-4">Healthy Education</h1>
+                </div>-->
+                <div id="headAndNeckCancer" class="tabcontent">
+                    <h1 class="mt-4 mb-4">{{fetched.title}}</h1>
+                    <p style="text-align: justify">{{fetched.text|safe}}</p>
+                    
+                    <ol>
+                        
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} 

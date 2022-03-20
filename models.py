@@ -24,7 +24,6 @@ class Slider(settings.db.Model):
 
 class Aboutus(settings.db.Model):
     id= settings.db.Column(settings.db.Integer, primary_key=True)
-    
     file_au= settings.db.Column(settings.db.String)
     text_au= settings.db.Column(settings.db.String)
     title= settings.db.Column(settings.db.String)
