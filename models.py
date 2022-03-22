@@ -65,7 +65,7 @@ class Docdetails(settings.db.Model):
 
 class Pservices(settings.db.Model):
     id = settings.db.Column(settings.db.Integer, primary_key= True)
-    serv_title= settings.db.Column(settings.db.String)
+    pat_title= settings.db.Column(settings.db.String)
     text= settings.db.Column(settings.db.String)
     img= settings.db.Column(settings.db.String)
 

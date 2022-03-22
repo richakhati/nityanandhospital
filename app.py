@@ -200,12 +200,12 @@ def show():
 @app.route('/pservice', methods=['GET', 'POST'])
 def patient():
     if settings.request.method=="POST":
-        serv_title= settings.request.form['serv_title']
+        pat_title= settings.request.form['pat_title']
         text= settings.request.form['ckeditor']
         img= settings.request.files['img']
         fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(img.filename)
         img.save(fname)
-        patient=models.Pservices(serv_title=serv_title, text=text,img=fname)
+        patient=models.Pservices(pat_title=pat_title, text=text,img=fname)
         settings.db.session.add(patient)
         settings.db.session.commit()
 
@@ -215,7 +215,7 @@ def patient():
 @app.route('/pservedit', methods=['GET', 'POST'])
 def pedit():
     if settings.request.method=='POST':
-        serv_title= settings.request.form['serv_title']
+        pat_title= settings.request.form['pat_title']
         text= settings.request.form['ckeditor']
         img= settings.request.files['img']
         fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(img.filename)
@@ -223,7 +223,7 @@ def pedit():
         id= settings.request.form['id']
         fetchdep= models.Pservices.query.filter_by(id=id).first()
         fetchdep.text=text
-        fetchdep.serv_title=serv_title
+        fetchdep.pat_title=pat_title
         fetchdep.img=fname
         settings.db.session.commit()
         return settings.redirect('/pservice')
@@ -233,6 +233,12 @@ def pedit():
     fetchpatient= models.Pservices.query.all()
     return settings.render_template('admin/pservedit.html', fetchpat=fetchpat) 
 
+@app.route('/patientshow', methods=['GET', 'POST'])
+def patshow():
+    id= settings.request.args['id']
+    fetchpat= models.Pservices.query.filter_by(id=id).first()
+    fetchpatient= models.Pservices.query.all()
+    return settings.render_template('fe/patientserv.html', fetchpat=fetchpat,fetchpatient=fetchpatient)
 
 
             ##############BILLING ENDS###############
@@ -266,8 +272,8 @@ def visitor():
         image= settings.request.files['image']
         fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(image.filename)
         image.save(fname)
-        serv_title= settings.request.form['serv_title']
-        visit= models.Pservices(img=fname, serv_title=serv_title)
+        pat_title= settings.request.form['pat_title']
+        visit= models.Pservices(img=fname, pat_title=pat_title)
         settings.db.session.add(visit)
         settings.db.session.commit()
 
@@ -282,7 +288,13 @@ def vresp():
     db.session.commit()
     return settings.redirect ('/vresp')
 
+@app.route('/vrespshow', methods=['GET','POST'])
+def vrespshow():
+    id= settings.request.args['id']
+    fetch1= models.Pservices.query.filter_by(id=id).first()
+    fetch= models.Pservices.query.all()
 
+    return settings.render_template('fe/patientserv.html', fetch1=fetch1, fetch=fetch)    
 
 
 
@@ -396,8 +408,9 @@ def con():
 
     
     fetchcontact= models.Contactus.query.filter_by(id=1).first()
+    fetch= models.Contactus.query.all()
     
-    return settings.render_template('admin/contactedit.html', fetchcontact=fetchcontact)
+    return settings.render_template('admin/contactedit.html', fetchcontact=fetchcontact, fetch=fetch)
 
 @app.route('/direction', methods=['GET', 'POST'])
 def direct():
@@ -413,6 +426,15 @@ def direct():
     
     fetchmap=  models.Contactus.query.filter_by(id=1).first()
     return settings.render_template('admin/direction.html', fetchmap=fetchmap)
+
+@app.route('/directionshow', methods=['GET','POST'])
+def dshow():
+    
+    fetchmap=models.Contactus.query.filter_by(id=1).first()
+    fetch1= models.Contactus.query.all()
+
+    return settings.render_template('fe/contact_map.html', fetchmap=fetchmap, fetch1=fetch1)    
+
 
 if __name__== '__main__':
     app.run(debug=True)

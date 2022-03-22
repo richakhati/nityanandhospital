@@ -104,7 +104,7 @@
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                          aria-labelledby="navbarDropdownMenuLink">
                          {% for i in fetch %}
-                         <a class="dropdown-item" href="/serviceshow?id={{i.id}}">{{i.serv_title}}</a>
+                             <a class="dropdown-item" href="/serviceshow?id={{i.id}}">{{i.serv_title}}</a>
                          {% endfor %}
                        
                        
@@ -118,10 +118,17 @@
                         <i class="icon-chevron-down" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
-                         aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="billing.html">Billing</a>
+                        aria-labelledby="navbarDropdownMenuLink">
+                        {% for i in fetchpatient %}
+                        <a class="dropdown-item" href="/vrespshow?id={{i.pat_title}}">{{i.pat_title}}</a>
+                        {% endfor %}
+                        
                         <a class="dropdown-item" href="appointment.php">Make an Appointment</a>
-                        <a class="dropdown-item" href="vistors_rights.html">Visitors Rights &amp; Responsibilities</a>
+
+                        {% for i in fetch %}
+                        <a class="dropdown-item" href="/vrespshow?id={{i.pat_title}}">{{i.pat_title}}</a>
+                        {% endfor %}
+
                     </div>
                 </li>
                 <li class="nav-item ">

@@ -6,7 +6,7 @@
          
         <input type="hidden" id="id" name="id" value="{{fetch.id}}">
         <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="serv_title" value="{{fetch.serv_title}}">
+        <input type="text" class="form-control" name="pat_title" value="{{fetch.pat_title}}">
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Image</label>
           <input class="form-control" name="image" value="{{fetch_img}}" type="file" id="formFile">
@@ -34,7 +34,7 @@
             <tr>
                             
               <th scope="row">{{loop.index}}</th>
-              <th scope="row">{{i.serv_title}}</th>
+              <th scope="row">{{i.pat_title}}</th>
                        
               <td><img src={{i.img}} alt="" width="44px"></td> 
               

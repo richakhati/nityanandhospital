@@ -8,7 +8,7 @@
         <input type="hidden" id= 'id' name= 'id' value="{{fetchpat.id}}">
        
         <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="serv_title" value="{{fetchpat.serv_title}}">
+        <input type="text" class="form-control" name="pat_title" value="{{fetchpat.pat_title}}">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Image</label>
             <input class="form-control" name="img" value="{{fetchpat.img}}"  type="file" id="formFile">
@@ -39,7 +39,7 @@
                     
                     
                     
-                    <td>{{i.serv_title}}</td>
+                    <td>{{i.pat_title}}</td>
                     
                     <td><img src="{{i.img}}" alt="" width="44px"></td> 
                     <td>{{i.text|safe}}</td>  
