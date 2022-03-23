@@ -142,9 +142,9 @@ def serve():
 def servshow():
     id= settings.request.args['id']
     fetch1= models.Service.query.filter_by(id=id).first()
-    fetch= models.Service.query.all()
+    fetch2= models.Service.query.all()
 
-    return settings.render_template('fe/fe_service.html', fetch=fetch, fetch1=fetch1)    
+    return settings.render_template('fe/fe_service.html', fetch2=fetch2, fetch1=fetch1)    
 
 ########################## SERVICES ENDS ##########################
 
@@ -231,7 +231,7 @@ def pedit():
     id= settings.request.args['id']
     fetchpat= models.Pservices.query.filter_by(id=id).first()
     fetchpatient= models.Pservices.query.all()
-    return settings.render_template('admin/pservedit.html', fetchpat=fetchpat) 
+    return settings.render_template('admin/pservedit.html', fetchpat=fetchpat, fetchpatient=fetchpatient) 
 
 @app.route('/patientshow', methods=['GET', 'POST'])
 def patshow():
@@ -259,45 +259,14 @@ def mail():
         msg.body = "Name: "+ name + "\nEmail: "+ mail +"\nDate of appointment: "+ date + "\nYour Phone no.: "+ phone+ "\nSelect Your Doctor :" + doctor + "\nYour subject" + subject
         
         settings.mail.send(msg)
-        
+    fetchpatient= models.Pservices.query.all()  
     fetch= models.Docdetails.query.all()
-    return settings.render_template('fe/email.html', fetch=fetch)
+    return settings.render_template('fe/appointment.html', fetch=fetch, fetchpatient=fetchpatient)
 
         ################### Make An Appointment- SMTP ENDS ###################
 
-######################### VISITORS RIGHTS AND RESPONSIBILITIES #############################
-@app.route('/vresp', methods=['GET','POST'])
-def visitor():
-    if settings.request.method=='POST':
-        image= settings.request.files['image']
-        fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(image.filename)
-        image.save(fname)
-        pat_title= settings.request.form['pat_title']
-        visit= models.Pservices(img=fname, pat_title=pat_title)
-        settings.db.session.add(visit)
-        settings.db.session.commit()
 
-    fetch= models.Pservices.query.all()
-    return settings.render_template('admin/vresp.html', fetch=fetch)
-
-@app.route('/delete')
-def vresp():
-    id= settings.request.args['id']
-    fetch= models.Pservices.query.filter_by(id=id).first()
-    db.session.delete(fetch)
-    db.session.commit()
-    return settings.redirect ('/vresp')
-
-@app.route('/vrespshow', methods=['GET','POST'])
-def vrespshow():
-    id= settings.request.args['id']
-    fetch1= models.Pservices.query.filter_by(id=id).first()
-    fetch= models.Pservices.query.all()
-
-    return settings.render_template('fe/patientserv.html', fetch1=fetch1, fetch=fetch)    
-
-
-
+   
 ######################## HEALTH EDUCATION #######################
 @app.route('/health', methods=['GET', 'POST'])
 def edu():
@@ -364,7 +333,7 @@ def abt():
     fetch=models.Aboutus.query.filter_by(id=id).first()
     fetchabout= models.Aboutus.query.all()
 
-    return settings.render_template('admin/aboutus.html', fetch=fetch, fetchabout=fetchabout    )
+    return settings.render_template('admin/aboutus.html', fetch=fetch, fetchabout=fetchabout)
 
 @app.route('/aboutshow', methods=['GET','POST'])
 def abtshow():
@@ -389,8 +358,13 @@ def consmtp():
         msg.body = "Name: "+ name + "\nEmail: "+ mail +"\nWrite your message: "+ message 
         
         settings.mail.send(msg)
-        fetchcon= models.Contactus.query.all()
-        return settings.render_template('admin/contact.html', fetchcon=fetchcon)
+
+    fetchcontact=models.Contactus.query.filter_by(id=1).first()
+    
+    fetchcon= models.Contactus.query.all()
+    return settings.render_template('fe/contact.html', fetchcon=fetchcon, fetchcontact=fetchcontact)
+    
+    
 
 @app.route('/contact', methods=['GET', 'POST'])
 def con():
@@ -411,6 +385,15 @@ def con():
     fetch= models.Contactus.query.all()
     
     return settings.render_template('admin/contactedit.html', fetchcontact=fetchcontact, fetch=fetch)
+
+@app.route('/contactshow', methods=['GET','POST'])
+def cshow():
+    
+    fetchcontact=models.Contactus.query.filter_by(id=1).first()
+    fetch= models.Contactus.query.all()
+
+    return settings.render_template('fe/contact_map.html', fetchcontact=fetchcontact, fetch=fetch)    
+
 
 @app.route('/direction', methods=['GET', 'POST'])
 def direct():
