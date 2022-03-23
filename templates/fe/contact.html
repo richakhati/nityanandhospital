@@ -1,0 +1,66 @@
+{% extends 'fe/fe_global.html' %}
+{% block body %}
+
+<section class="bg-image" style="background-image: url('images/bg_1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-5">
+                <h1 class="display-4"><br>Contact Us</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="probootstrap-services">
+    <div class="container">
+        <div class="row no-gutters1">
+            <div class="col-md-3 pb-5 probootstrap-aside-stretch-left probootstrap-inside">
+                <div class="mb-3 pt-5">
+                    <h2 class="h6">Contact</h2>
+                    <ul class="list-unstyled probootstrap-light mb-4">
+                       
+                        <li><a href="/consmtp">Contact</a></li>
+    
+                        <li >
+                           
+                            <a href="/directionshow">Directions</a>
+                            
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 pl-md-5 pb-5 pl-0 probootstrap-inside">
+                <h1 class="mt-4 mb-4">Get In Touch</h1>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="{{fetchcontact.img}}" style="max-width: 100%;">
+                    </div>
+                </div>
+                <div class="container">
+                    <form action="/consmtp" method="post">
+                        <div class="input-group mb-3">
+                           
+                            <input type="text" class="form-control" style="border: 1px solid; border-radius: 25px;" name="name" placeholder="Enter your name" >
+                          </div>
+                          
+                          <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Enter your email" name="mail">
+                           
+                          </div>
+                          
+                         
+                          <div class="input-group mb-3">
+                            <textarea name="message" placeholder="Write your message" cols="30" rows="10"></textarea>
+                          </div>
+                        
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>                      
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} 
