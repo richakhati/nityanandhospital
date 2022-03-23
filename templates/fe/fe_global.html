@@ -103,31 +103,26 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                          aria-labelledby="navbarDropdownMenuLink">
-                         {% for i in fetch %}
-                             <a class="dropdown-item" href="/serviceshow?id={{i.id}}">{{i.serv_title}}</a>
-                         {% endfor %}
-                       
-                       
+
+                            {% for i in fetch2 %}
+                            <a class="dropdown-item" href="/serviceshow?id={{i.id}}">{{i.serv_title}}</a>
+                            {% endfor %}     
                     </div>
                 </li>
                 <li class="nav-item">
                     <a href="your_doctors.html" class="nav-link">Know Your Doctor</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link">Patient Services
+                    <a href="/patientshow?id=1" class="nav-link">Patient Services
                         <i class="icon-chevron-down" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                         aria-labelledby="navbarDropdownMenuLink">
+                       
                         {% for i in fetchpatient %}
-                        <a class="dropdown-item" href="/vrespshow?id={{i.pat_title}}">{{i.pat_title}}</a>
+                        <a class="dropdown-item" href="/patientshow?id={{i.id}}">{{i.pat_title}}</a>
                         {% endfor %}
-                        
-                        <a class="dropdown-item" href="appointment.php">Make an Appointment</a>
-
-                        {% for i in fetch %}
-                        <a class="dropdown-item" href="/vrespshow?id={{i.pat_title}}">{{i.pat_title}}</a>
-                        {% endfor %}
+                        <a class="dropdown-item" href="/email">Make an Appointment</a>
 
                     </div>
                 </li>
@@ -142,7 +137,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="contact.php" class="nav-link">Contact Us</a>
+                    <a href="/consmtp" class="nav-link">Contact Us</a>
                 </li>
             </ul>
         </div>
