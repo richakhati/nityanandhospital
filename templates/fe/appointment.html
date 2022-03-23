@@ -1,0 +1,94 @@
+{% extends 'fe/fe_global.html' %}
+{% block body %}
+
+<section class="bg-image" style="background-image: url('images/bg_1.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-5">
+                <h1 class="display-4"><br>Patient Services</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="probootstrap-services">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-md-3 pb-5 probootstrap-aside-stretch-left probootstrap-inside">
+                <div class="mb-3 pt-5">
+                    <h2 class="h6">Patient Services</h2>
+                    <ul class="list-unstyled probootstrap-light mb-4">
+
+                        <li class="active">
+                            <a href="/email">Make an appointment</a>
+                        </li>
+                      
+                        {% for i in fetchpatient %}
+                        <li>
+                          
+                           <a href="/patientshow?id={{i.pat_title}}">{{i.pat_title}}</a>
+            
+                        </li>
+                        {% endfor %}
+                        
+                      
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 pl-md-5 pb-5 pl-0 probootstrap-inside">
+
+
+                <h1 class="mt-4 mb-4">Make an appointment</h1>
+                <br>
+                <section class="probootstrap-blog-appointment">
+                    <div class="container">
+                        <div class="row no-gutters">
+                            <div class="col-md-12 p-md-5 p-3 probootstrap-aside-stretch-right">
+                                <h2 class="h1 text-white">Make an Appointment</h2>
+                                <p style="color: #fff">24 Hours prior appointment</p>
+                                <br>
+                                <form  method="post" class="probootstrap-form-appointment">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="name" placeholder="Your Name"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="email" placeholder="Your Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="phone"
+                                               oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                               placeholder="Your Phone Number" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <select class="form-control" name="doctors" required>
+                                            <option value="">Select Doctor</option>
+                                            {% for i in fetch %}
+                                            <option value="{{i.doc_name}}">{{i.doc_name}}</option> 
+                                            {% endfor %}
+                                           
+                                           
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="icon"><i class="icon-calendar"></i></span>
+                                        <input type="date" id="probootstrap-date" class="form-control" name="date"
+                                               placeholder="Appointment Date" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="message" class="form-control" id="" cols="30" rows="10"
+                                                  placeholder="Write your message"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Submit Form" name="submit"
+                                               class="btn btn-secondary">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 
