@@ -19,7 +19,7 @@ mail = Mail(app)
 
 db= SQLAlchemy(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///nnhospital.sqlite3"
-
+app.config['CKEDITOR_PKG_TYPE'] = 'full-all'
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"

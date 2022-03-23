@@ -1,3 +1,4 @@
+from flask import render_template
 import settings
 from settings import app, db
 import models 
@@ -25,9 +26,13 @@ def admin():
     return settings.render_template('admin/login.html')
 
 ########################## HOME ######################################
+@app.route('/home', methods=['GET', 'POST'])
+def fe():
+    fetchslider= models.Slider.query.all()
+    fetch= models.Docdetails.query.all()
+   
 
-
-
+    return settings.render_template('fe/home.html', fetchslider=fetchslider, fetch=fetch)
 
 
 ########################### HOME SLIDER #########################################
@@ -97,6 +102,14 @@ def edit():
     fetchdetails= models.Docdetails.query.filter_by(id=id).first()
     fetchall= models.Docdetails.query.all()
     return settings.render_template('admin/docedit.html', getinfo= fetchdetails,fetchall=fetchall)
+
+@app.route('/docshow', methods=['GET','POST'])
+def drshow():
+    id= settings.request.args['id']
+    fetchdetails= models.Docdetails.query.filter_by(id=id).first()
+    fetchall= models.Docdetails.query.all()
+
+    return settings.render_template('fe/yourdoctors.html', fetchall=fetchall, fetchdetails=fetchdetails)
 
 ################################# DOCTOR ENDS HERE ################################ 
 
