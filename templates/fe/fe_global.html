@@ -71,7 +71,7 @@
         <div class="collapse navbar-collapse" id="probootstrap-nav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link pl-0">Home</a>
+                    <a href="/home" class="nav-link pl-0">Home</a>
                 </li>
                 <li class="nav-item ">
                     <a href="/aboutshow?id=1" class="nav-link">About</a>
@@ -89,7 +89,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                          aria-labelledby="navbarDropdownMenuLink">
-                        {% for i in fetchdep %}
+                        {% for i in fetchdp %}
                         <a class="dropdown-item" href="/deptshow?id={{i.id}}">{{i.dept_title}}</a>  
                         {% endfor %}
                           
@@ -98,19 +98,19 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a href="/serviceshow?id=1" class="nav-link">Services
+                    <a href="/serviceshow" class="nav-link">Services
                         <i class="icon-chevron-down" aria-hidden="true"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                          aria-labelledby="navbarDropdownMenuLink">
 
-                            {% for i in fetch2 %}
+                            {% for i in fetchs %}
                             <a class="dropdown-item" href="/serviceshow?id={{i.id}}">{{i.serv_title}}</a>
                             {% endfor %}     
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="/docshow?id=1" class="nav-link">Know Your Doctor</a>
+                    <a href="/docshow" class="nav-link">Know Your Doctor</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="/patientshow?id=1" class="nav-link">Patient Services
@@ -119,7 +119,7 @@
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                         aria-labelledby="navbarDropdownMenuLink">
                        
-                        {% for i in fetchpatient %}
+                        {% for i in fetchpt %}
                         <a class="dropdown-item" href="/patientshow?id={{i.id}}">{{i.pat_title}}</a>
                         {% endfor %}
                         <a class="dropdown-item" href="/email">Make an Appointment</a>
@@ -127,7 +127,7 @@
                     </div>
                 </li>
                 <li class="nav-item ">
-                    <a href="/healthshow?id=1" class="nav-link">Health Education</a>
+                    <a href="/healthshow" class="nav-link">Health Education</a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                          aria-labelledby="navbarDropdownMenuLink">
                         {% for i in fetchedu %}
@@ -148,7 +148,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="index.php" class="mr-auto">
+                <a href="/home" class="mr-auto">
                     <img src="static/assets/images/logo.png" class="hires">
                 </a>
             </div>

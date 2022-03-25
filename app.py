@@ -3,6 +3,16 @@ import settings
 from settings import app, db
 import models 
 
+
+@app.context_processor
+def globalcontext():
+    fetchpatient= models.Pservices.query.all()
+    fetch2= models.Service.query.all()
+    fetchdep= models.Departments.query.all()
+
+    return dict(fetchpt=fetchpatient,fetchs=fetch2, fetchdp=fetchdep  )
+
+
 @app.route('/admin', methods= ['GET', 'POST'])
 def rids():
     if not settings.session.get('name'):
@@ -26,13 +36,14 @@ def admin():
     return settings.render_template('admin/login.html')
 
 ########################## HOME ######################################
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def fe():
     fetchslider= models.Slider.query.all()
-    fetch= models.Docdetails.query.all()
+    fetchdoc= models.Docdetails.query.all()
+    fetchabt=models.Aboutus.query.filter_by(id=2).first()
    
 
-    return settings.render_template('fe/home.html', fetchslider=fetchslider, fetch=fetch)
+    return settings.render_template('fe/home.html', fetchslider=fetchslider, fetchdoc=fetchdoc,fetchabt=fetchabt )
 
 
 ########################### HOME SLIDER #########################################
@@ -105,11 +116,18 @@ def edit():
 
 @app.route('/docshow', methods=['GET','POST'])
 def drshow():
+    
+    fetchall= models.Docdetails.query.all()
+
+    return settings.render_template('fe/yourdoctors.html', fetchall=fetchall)
+
+@app.route('/docdet', methods=['GET','POST'])
+def docdet():
     id= settings.request.args['id']
     fetchdetails= models.Docdetails.query.filter_by(id=id).first()
     fetchall= models.Docdetails.query.all()
 
-    return settings.render_template('fe/yourdoctors.html', fetchall=fetchall, fetchdetails=fetchdetails)
+    return settings.render_template('fe/drdetails.html', fetchall=fetchall, fetchdetails=fetchdetails)
 
 ################################# DOCTOR ENDS HERE ################################ 
 

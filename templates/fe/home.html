@@ -3,15 +3,12 @@
 
 <!--Slider Section Start-->
 <section class="lazy slider" data-sizes="50vw">
+    {% for f in fetchslider %}
     <div>
-        <img data-lazy="static/assets/images/27YEARS-SLIDER.jpg" data-srcset="images/27YEARS-SLIDER.jpg" data-sizes="100vw">
+        <img src="{{f.slider_image}}" data-lazy="{{f.slider_image}}" data-srcset="{{f.slider_image}}" data-sizes="100vw">
     </div>
-    <div>
-        <img data-lazy="static/assets/images/cancer-slider.jpg" data-srcset="images/cancer-slider.jpg" data-sizes="100vw">
-    </div>
-    <div>
-        <img data-lazy="static/assets/images/img-1.png" data-srcset="images/homepage-1.jpg" data-sizes="100vw">
-    </div>
+    {% endfor %}
+
 </section>
 <!--Slider Section End-->
 
@@ -25,12 +22,7 @@
 
                 <h2 class="mt-4 mb-4">Mission Statement</h2>
                 <h4 style="text-align: justify;color: #4fb5e6;">
-                    We are dedicated to consistently enrich the quality of life of all our members and visitors by
-                    providing excellent and accessible health services to all in the need of care in a diverse urban
-                    community regardless of the status and ability to pay. We are devoted to providing a resource for
-                    compassionate speciality and super speciality services; and to be innovators in integrated health
-                    facilities. We are committed to develop co-operative relationships with other healthcare providers
-                    and promotion of wellness through health education and awareness.
+                   {{fetchabt.text_au|safe}}
                 </h4>
             </div>
         </div>
@@ -93,7 +85,7 @@
                 <h2 class="h1 text-white">Make an Appointment</h2>
                 <p style="color: #fff">24 Hours prior appointment</p>
                 <br>
-                <form method="post" class="probootstrap-form-appointment">
+                <form action="/email"   method="post" class="probootstrap-form-appointment">
                     <div class="form-group">
                         <input type="text" class="form-control" name="name" placeholder="Your Name" required>
                     </div>
