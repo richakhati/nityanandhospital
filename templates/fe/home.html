@@ -99,7 +99,7 @@
                     <div class="form-group">
                         <select class="form-control" name="doctors" required>
                             <option value="">Select Doctor</option>
-                            {% for i in fetch %}
+                            {% for i in fetchdoc %}
                             <option value="{{i.doc_name}}">{{i.doc_name}}</option> 
                             {% endfor %}
                            
@@ -108,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <span class="icon"><i class="icon-calendar"></i></span>
-                        <input type="text" id="probootstrap-date" class="form-control" name="date"
+                        <input type="date" id="probootstrap-date" class="form-control" name="date"
                                placeholder="Appointment Date" required>
                     </div>
                     <div class="form-group">
