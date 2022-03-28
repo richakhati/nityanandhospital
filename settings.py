@@ -1,11 +1,12 @@
-from flask import Flask,render_template,request,session,redirect,send_file
+from flask import Flask,render_template,request,session,redirect,send_file,url_for,send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from werkzeug.utils import secure_filename
-from flask_ckeditor import CKEditor
+from flask_ckeditor import CKEditor,upload_success, upload_fail
 from flask_mail import Mail, Message
 import pandas as pd
 import random
+import os
 
 app = Flask(__name__)
 mail= Mail(app)
@@ -25,3 +26,5 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 ckeditor = CKEditor(app)
+app.config['CKEDITOR_PKG_TYPE'] = 'full-all'
+app.config['CKEDITOR_FILE_UPLOADER'] = 'upload'

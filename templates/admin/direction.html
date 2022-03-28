@@ -2,18 +2,30 @@
 {% block Body %}
 
 
-<div class="container">
-    <div class="row"><div class="col-md-6"><form action="/direction"  method="post" enctype="multipart/form-data">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <form action="/direction" method="post" enctype="multipart/form-data">
 
-    <input type="hidden" id="id" name="id" value="{{fetchmap.id}}">
-    <label for="exampleFormControlInput1" class="form-label">Direction Link</label>
-    <input type="text" class="form-control" name="link" value="{{fetchmap.link}}">
-    
-    <iframe src="{{fetchmap.link}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    <button type="submit" class="btn btn-dark">Submit</button> <br>
-
-</form></div>
-</div>
+                        <input type="hidden" id="id" name="id" value="{{fetchmap.id}}">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Direction Link</label>
+                            <input type="text" class="form-control" name="link" value="{{fetchmap.link}}">
+                        </div>
+                        <div class="mb-3">
+                            <iframe src="{{fetchmap.link}}" width="600" height="450" style="border:0;"
+                                allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-dark">Submit</button> <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

@@ -17,7 +17,7 @@
                 <div class="mb-3 pt-5 tab">
                     <h2 class="h6 tablinks" onclick="openTab(event, 'about')" id="defaultOpen">About</h2>
                     <ul class="list-unstyled probootstrap-light mb-4">
-                        {% for i in fetchabout %}
+                        {% for i in fetchabout[1:] %}
                         <li>
                             <a href="/aboutshow?id={{i.id}}">{{i.title}}</a>
                         </li>  
@@ -31,8 +31,11 @@
                 <div id="about" class="tabcontent">
                     <h1 class="mt-4 mb-4">{{fetch.title}}</h1>
                     <div class="col-md-12">
-                        <img src="{{fetch.file_au}}" style="max-width: 100%;">
-                        <h1 class="mt-4 mb-4">{{fetch.title}}</h1>
+                        {% if fetch.file_au != None %}
+                        <img src="{{fetch.file_au}}" style="max-width: 100%;">  
+                        {% endif %}
+                        
+                        
                         <p>{{fetch.text_au|safe}}</p>
                     </div>
                     <br>

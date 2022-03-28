@@ -1,84 +1,84 @@
 {% extends 'admin/global.html' %}
 {% block Body %}
 
-<div class="container">
-    <div class="row"><div class="col-md-6"><form action="/dept" method="post" enctype="multipart/form-data">
-         
-        
-        <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="dept_title" value="{{fetchdep.dept_title}}">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Image</label>
-          <input class="form-control" name="dept_img" value="{{fetchdep_img}}" type="file" id="formFile">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <form action="/dept" method="post" enctype="multipart/form-data">
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Title</label>
+              <input type="text" class="form-control" name="dept_title" value="{{fetchdep.dept_title}}">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Image</label>
+              <input class="form-control" name="dept_img" value="{{fetchdep_img}}" type="file" id="formFile">
+            </div>
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Text</label>
+              {{ ckeditor.create(value= fetchdep.dept_text|safe) }}
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-dark">Submit</button> <br>
+            </div>
+          </form>
         </div>
-        <label for="exampleFormControlInput1" class="form-label">Text</label>
-        {{ ckeditor.create(value= fetchdep.dept_text|safe) }}
-        <button type="submit" class="btn btn-dark">Submit</button> <br>
-    </form></div>
-    
+      </div>
+    </div>
+
 
     <div class="col-md-6">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Sr.No</th>
-            <th scope="col">Title</th>
-            <th scope="col">Image</th>
-            <th scope="col">Text</th>
-            <th scope="col">Actions</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-    
-            {% for i in fetchdep  %}
-            <tr>
-                            
-              <th scope="row">{{loop.index}}</th>
-              <th scope="row">{{i.dept_title}}</th>
-                       
-              <td><img src={{i.dept_img}} alt="" width="44px"></td> 
-              <th scope="row">{{i.dept_text|safe}}</th>
-              
-              
-              
-              <td><a href="/deptedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>                       
-              
-              </td>
-                                
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sr.No</th>
+                <th scope="col">Title</th>
+                <th scope="col">Image</th>
+
+                <th scope="col">Actions</th>
+
               </tr>
-            {% endfor %}
-                           
-           
-           
-          
-                          
-            
-        </tbody>
-      </table></div>
+            </thead>
+            <tbody>
+
+              {% for i in fetchdep  %}
+              <tr>
+
+                <th scope="row">{{loop.index}}</th>
+                <th scope="row">{{i.dept_title}}</th>
+
+                <td><img src={{i.dept_img}} alt="" width="44px"></td>
+
+
+
+
+                <td><a href="/deptedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>
+
+                </td>
+
+              </tr>
+              {% endfor %}
+
+
+
+
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
-</div>      
-    
   </div>
+</div>
+</div>
+
+</div>
 
 
-    {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% endblock %}

@@ -39,34 +39,25 @@
             </div>
         </div>
         <div class="row no-gutters">
+            {% for i in fetchdoc[0:4] %}
             <div class="col-lg-3 col-md-3 col-sm-6 col-6 prbootstrap-team">
-                <img src="" alt="Dr. Harish Bhatt" class="img-fluid">
+                <img src="{{i.doc_img}}" alt="Dr. Harish Bhatt" class="img-fluid">
                 <div class="probootstrap-person-text">
-                    <span class="name"><a href="dr_harish_bhatt.html">Dr. Harish Bhatt</a></span>
-                    <span class="title">Physician & Cardiologist</span>
+                   
+                    
+                    <span class="name">
+                        <a href="/docdet?id={{i.id}}" style="color: #ffffff">{{i.doc_name}}</a>
+                    </span>
+                   
+                       
+                   
+                    <!--<span class="title">Medical Doctor</span>-->
+                    <span class="title">{{i.doc_title}}</span>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 prbootstrap-team">
-                <img src="images/doctor/dr_harish_shetty_black_homepage.jpg" alt="Dr. Harish Shetty" class="img-fluid">
-                <div class="probootstrap-person-text">
-                    <span class="name"><a href="dr_harish_shetty.html" style="color: #fff">Dr. Harish Shetty</a></span>
-                    <span class="title">Psychiatrist &amp; Psychotherapist</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 prbootstrap-team">
-                <img src="images/doctor/dr_sushen_bhatt_black_homepage.jpg" alt="Dr. Sushen Bhatt" class="img-fluid">
-                <div class="probootstrap-person-text">
-                    <span class="name"><a href="dr_sushen_bhatt.html" style="color: #ffffff">Dr. Sushen Bhatt</a></span>
-                    <span class="title">Surgical Oncologist</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-6 prbootstrap-team">
-                <img src="images/doctor/dr_vibhuti_bhatt_black_homepage.jpg" alt="Dr. Vibhuti  Bhatt" class="img-fluid">
-                <div class="probootstrap-person-text">
-                    <span class="name"><a href="dr_vibhuti_bhatt.html" style="color: #fff">Dr. Vibhuti  Bhatt</a></span>
-                    <span class="title">Otorhinolaryngologist</span>
-                </div>
-            </div>
+            {% endfor %}
+           
+            
         </div>
     </div>
 </section>

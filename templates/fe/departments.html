@@ -21,7 +21,7 @@
                 <div class="mb-3 pt-5">
                     <h2 class="h6">Departments</h2>
                     <ul class="list-unstyled probootstrap-light mb-4">
-                        {% for i in fetchdep %}
+                        {% for i in fetchdep[1:] %}
                         <li>
                             <a href="/deptshow?id={{i.id}}">{{i.dept_title}}</a>
                         </li>

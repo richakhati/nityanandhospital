@@ -1,63 +1,82 @@
 {% extends 'admin/global.html' %}
 {% block Body %}
 
-<div class="container">
+<div class="container-fluid">
 
-    <div class="row"><div class="col-md-6"><form action="/docadd" method="post" enctype="multipart/form-data">
-         
-       
-        <label for="exampleFormControlInput1" class="form-label">Name</label>
-        <input type="text" class="form-control" name="doc_name" value="{{getinfo.doc_name}}" >
-        <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="doc_title" value="{{getinfo.doc_title}}">
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Image</label>
-            <input class="form-control" name="doc_img" value="{{getinfo.doc_img}}" type="file" id="formFile">
-          </div>
-          <label for="exampleFormControlInput1" class="form-label">Text</label>
-          {{ ckeditor.create(value=getinfo.doc_text) }}
-        <button type="submit" class="btn btn-dark">submit</button> <br>
-    </form></div>
+  <div class="row">
     <div class="col-md-6">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Sr.No</th>
-            <th scope="col">Name</th>
-            <th scope="col">Title</th>
-            <th scope="col">Image</th>
-            <th scope="col">Text</th>
-            <th scope="col">Actions</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-    
-          {% for i in getinfo  %}
-                           
-            <tr>
-                            
-            <th scope="row">{{loop.index}}</th>
-            
-            
-            
-            <td>{{i.doc_name}}</td>
-            <td>{{i.doc_title}}</td>
-            <td><img src="{{i.doc_img}}" alt="" width="44px"></td> 
-            <td>{{i.doc_text|safe}}</td>  
-            
-            <td><a href="/docedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>                       
-            
-            </td>
-                              
-            </tr>
-                          
-          {% endfor %}
-        </tbody>
-      </table></div>
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <form action="/docadd" method="post" enctype="multipart/form-data">
+
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Name</label>
+              <input type="text" class="form-control" name="doc_name" value="{{getinfo.doc_name}}">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Title</label>
+              <input type="text" class="form-control" name="doc_title" value="{{getinfo.doc_title}}">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Image</label>
+              <input class="form-control" name="doc_img" value="{{getinfo.doc_img}}" type="file" id="formFile">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Text</label>
+              {{ ckeditor.create(value=getinfo.doc_text) }}
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-dark">submit</button> <br>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+    <div class="col-md-6">
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sr.No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Title</th>
+                <th scope="col">Image</th>
+                <th scope="col">Text</th>
+                <th scope="col">Actions</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for i in getinfo  %}
+
+              <tr>
+
+                <th scope="row">{{loop.index}}</th>
+
+
+
+                <td>{{i.doc_name}}</td>
+                <td>{{i.doc_title}}</td>
+                <td><img src="{{i.doc_img}}" alt="" width="44px"></td>
+                <td>{{i.doc_text|safe}}</td>
+
+                <td><a href="/docedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>
+
+                </td>
+
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </div>
 </div>
-   {% endblock %}  
+{% endblock %}

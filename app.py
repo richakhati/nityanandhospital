@@ -4,6 +4,22 @@ from settings import app, db
 import models 
 
 
+@settings.app.route('/files/<path:filename>')
+def uploaded_files(filename):
+   path = 'static/admin-assets/img/ckimages/'
+   return settings.send_from_directory(path, filename)
+
+@settings.app.route('/upload', methods=['POST'])
+def upload():
+   f = settings.request.files.get('upload')
+   # Add more validations here
+   extension = f.filename.split('.')[-1].lower()
+   if extension not in ['jpg', 'gif', 'png', 'jpeg']:
+      return settings.upload_fail(message='Image only!')
+   f.save(settings.os.path.join('static/admin-assets/img/ckimages/', f.filename))
+   url = settings.url_for('uploaded_files', filename=f.filename)
+   return settings.upload_success(url, filename=f.filename) 
+
 @app.context_processor
 def globalcontext():
     fetchpatient= models.Pservices.query.all()
@@ -41,6 +57,7 @@ def fe():
     fetchslider= models.Slider.query.all()
     fetchdoc= models.Docdetails.query.all()
     fetchabt=models.Aboutus.query.filter_by(id=2).first()
+    
    
 
     return settings.render_template('fe/home.html', fetchslider=fetchslider, fetchdoc=fetchdoc,fetchabt=fetchabt )
@@ -151,16 +168,22 @@ def serv():
 @app.route('/servedit', methods=['GET', 'POST'])
 def serve():
     if settings.request.method=='POST':
+        id= settings.request.form['id']
+        fetch= models.Service.query.filter_by(id=id).first()
         serv_title= settings.request.form['serv_title']
         serv_text= settings.request.form['ckeditor']
         serv_img= settings.request.files['serv_img']
-        fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(serv_img.filename)
-        serv_img.save(fname)
-        id= settings.request.form['id']
-        fetch= models.Service.query.filter_by(id=id).first()
+        serv_img.seek(0,settings.os.SEEK_END)
+        if serv_img.tell() == 0:
+            pass
+        else:
+            fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(serv_img.filename)
+            serv_img.save(fname)
+            fetch.serv_img=fname
+        
         fetch.serv_title=serv_title
         fetch.serv_text=serv_text
-        fetch.serv_img=fname
+       
         settings.db.session.commit()
         return settings.redirect('/service')
 
@@ -199,23 +222,31 @@ def dep():
 @app.route('/deptedit', methods=['GET', 'POST'])
 def depted():
     if settings.request.method=='POST':
-        dept_text= settings.request.form['ckeditor']
-        dept_img= settings.request.files['dept_img']
-        fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(dept_img.filename)
-        dept_img.save(fname)
-        dept_title= settings.request.form['dept_title']
         id= settings.request.form['id']
         fetchdep= models.Departments.query.filter_by(id=id).first()
+        dept_text= settings.request.form['ckeditor']
+        dept_title= settings.request.form['dept_title']
+        file= settings.request.files['dept_img']
+        file.seek(0,settings.os.SEEK_END)
+        if file.tell() == 0:
+            pass
+        else:
+            fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(file.filename)
+            file.save(fname)
+            
+            fetchdep.dept_img=fname
+        
+        
         fetchdep.dept_text=dept_text
         fetchdep.dept_title=dept_title
-        fetchdep.dept_img=fname
+        
         settings.db.session.commit()
         return settings.redirect('/dept')
 
     id= settings.request.args['id']
     fetchdept= models.Departments.query.filter_by(id=id).first()
     fetchdep= models.Departments.query.all()
-    return settings.render_template('admin/deptedit.html', fetchdept=fetchdept)
+    return settings.render_template('admin/deptedit.html', fetchdept=fetchdept,fetchdep=fetchdep)
 
 @app.route('/deptshow', methods=['GET', 'POST'])
 def show():
@@ -246,16 +277,19 @@ def patient():
 @app.route('/pservedit', methods=['GET', 'POST'])
 def pedit():
     if settings.request.method=='POST':
+        id= settings.request.form['id']
+        fetchdep= models.Pservices.query.filter_by(id=id).first()
         pat_title= settings.request.form['pat_title']
         text= settings.request.form['ckeditor']
         img= settings.request.files['img']
-        fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(img.filename)
-        img.save(fname)
-        id= settings.request.form['id']
-        fetchdep= models.Pservices.query.filter_by(id=id).first()
+        if img.tell() == 0:
+            pass
+        else:
+            fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(img.filename)
+            img.save(fname)
+            fetchdep.img=fname
         fetchdep.text=text
         fetchdep.pat_title=pat_title
-        fetchdep.img=fname
         settings.db.session.commit()
         return settings.redirect('/pservice')
 
@@ -344,19 +378,20 @@ def abt():
         title= settings.request.form['title']
         text= settings.request.form['ckeditor']
         file = settings.request.files['file']
+        
+        id= settings.request.form['id']
+        fetch= models.Aboutus.query.filter_by(id=id).first()
+        fetch.title=title
+        
+        fetch.text_au=text
         file.seek(0,settings.os.SEEK_END)
         if file.tell() == 0:
             pass
         else:
             file.seek(0)
             fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(file.filename)
-        file.save(fname)
-        id= settings.request.form['id']
-        fetch= models.Aboutus.query.filter_by(id=id).first()
-        fetch.title=title
-        fetch.file_au=fname
-        fetch.text_au=text
-        fetch.file=fname
+            file.save(fname)
+            fetch.file_au=fname
         settings.db.session.commit()
         return settings.redirect('/about?id=1')
 

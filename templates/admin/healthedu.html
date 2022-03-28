@@ -1,59 +1,75 @@
 {% extends 'admin/global.html' %}
 {% block Body %}
 
-<div class="container">
+<div class="container-fluid">
 
-    <div class="row"><div class="col-md-6"><form action="/healthedit" method="post" enctype="multipart/form-data">
-         
-        <input type="hidden" id= 'id' name= 'id' value="{{fetched.id}}">
-        <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="title" value="{{fetched.title}}" >
-        
-        
-          <label for="exampleFormControlInput1" class="form-label">Text</label>
-          {{ ckeditor.create(value= fetched.text|safe) }}
-        <button type="submit" class="btn btn-dark">submit</button> <br>
-    </form></div>
+  <div class="row">
     <div class="col-md-6">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Sr.No</th>
-            
-            <th scope="col">Title</th>
-            
-            <th scope="col">Text</th>
-            <th scope="col">Actions</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-    
-          {% for i in fetchedu  %}
-                           
-            <tr>
-                            
-            <th scope="row">{{loop.index}}</th>
-            
-            
-            
-            
-            <td>{{i.title}}</td>
-            
-            <td>{{i.text|safe}}</td>  
-            
-            <td><a href="/healthedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>                       
-            
-            </td>
-                              
-            </tr>
-                          
-          {% endfor %}
-        </tbody>
-      </table></div>
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <form action="/healthedit" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" id='id' name='id' value="{{fetched.id}}">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Title</label>
+              <input type="text" class="form-control" name="title" value="{{fetched.title}}">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Text</label>
+              {{ ckeditor.create(value= fetched.text|safe) }}
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-dark">submit</button> <br>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+    <div class="col-md-6">
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sr.No</th>
+
+                <th scope="col">Title</th>
+
+
+                <th scope="col">Actions</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for i in fetchedu  %}
+
+              <tr>
+
+                <th scope="row">{{loop.index}}</th>
+
+
+
+
+                <td>{{i.title}}</td>
+
+
+
+                <td><a href="/healthedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>
+
+                </td>
+
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 </div>
 </div>
-   {% endblock %}  
+{% endblock %}

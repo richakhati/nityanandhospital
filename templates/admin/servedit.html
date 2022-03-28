@@ -1,61 +1,79 @@
 {% extends 'admin/global.html' %}
 {% block Body %}
 
-<div class="container">
+<div class="container-fluid">
 
-    <div class="row"><div class="col-md-6"><form action="/servedit" method="post" enctype="multipart/form-data">
-         
-        <input type="hidden" id= 'id' name= 'id' value="{{fetch1.id}}">
-       
-        <label for="exampleFormControlInput1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="serv_title" value="{{fetch1.serv_title}}">
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Image</label>
-            <input class="form-control" name="serv_img" value="{{fetch1.serv_img}}"  type="file" id="formFile">
-          </div>
-          <label for="exampleFormControlInput1" class="form-label">Text</label>
-          {{ckeditor.create(value= fetch1.serv_text|safe)}}
-        <button type="submit" class="btn btn-dark">submit</button> <br>
-    </form></div>
+  <div class="row">
     <div class="col-md-6">
-        <table class="table">
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <form action="/servedit" method="post" enctype="multipart/form-data">
+
+            <input type="hidden" id='id' name='id' value="{{fetch1.id}}">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Title</label>
+              <input type="text" class="form-control" name="serv_title" value="{{fetch1.serv_title}}">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Image</label>
+              <input class="form-control" name="serv_img" value="{{fetch1.serv_img}}" type="file" id="formFile">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Text</label>
+              {{ckeditor.create(value= fetch1.serv_text|safe)}}
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-dark">submit</button> <br>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+
+      <div class="main-card mb-3 card">
+        <div class="card-body">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">Sr.No</th>
                 <th scope="col">Title</th>
                 <th scope="col">Image</th>
-                <th scope="col">Text</th>
+
                 <th scope="col">Actions</th>
-                
+
               </tr>
             </thead>
             <tbody>
-        
-              
-                {% for i in fetch  %}
-                <tr>
-                                
-                    <th scope="row">{{loop.index}}</th>
-                    
-                    
-                    
-                    <td>{{i.serv_title}}</td>
-                    
-                    <td><img src="{{i.serv_img}}" alt="" width="44px"></td> 
-                    <td>{{i.serv_text|safe}}</td>  
-                    <td><a href="/servedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>
-                           
-                    
-                    </td>
-                                      
-                    </tr>
-                {% endfor %}          
-                
-                              
-              
+
+
+              {% for i in fetch  %}
+              <tr>
+
+                <th scope="row">{{loop.index}}</th>
+
+
+
+                <td>{{i.serv_title}}</td>
+
+                <td><img src="{{i.serv_img}}" alt="" width="44px"></td>
+
+                <td><a href="/servedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>
+
+
+                </td>
+
+              </tr>
+              {% endfor %}
+
+
+
             </tbody>
-          </table></div>
-</div>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-{% endblock %}
+  {% endblock %}
