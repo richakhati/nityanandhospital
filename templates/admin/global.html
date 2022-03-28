@@ -67,18 +67,12 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
- 
-          </li>
-          <li class="nav-item menu-open">
-            
-            <li class="nav-item">
+          
+          <li class="nav-item">
+            <!-- menu-open -->
+            <li class="nav-item {% block slider %}
+              
+            {% endblock slider %} ">
               <a href="/homeslider" class="nav-link">
                 <i class="fa fa-list-alt" aria-hidden="true"></i>
                 <p>
@@ -87,8 +81,10 @@
               </a>
             </li>
           </li>
-          <li class="nav-header" style="font-weight:500; color:#999;">About</li>
-          <li class="nav-item">
+          
+          <li class="nav-item {% block about %}
+              
+          {% endblock about %}">
             <a href="/about?id=1" class="nav-link">
               <i class="fa fa-list-alt" aria-hidden="true"></i>
               <p>
@@ -97,9 +93,10 @@
             </a>
           </li>
           
-          
-          <li class="nav-header" style="font-weight:500; color:#999;">Departments</li>
-          <li class="nav-item">
+        
+          <li class="nav-item {% block dep %}
+            
+          {% endblock dep %}">
             <a href="/dept" class="nav-link">
               <i class="fas fa-check"></i>
               <p>
@@ -108,8 +105,10 @@
             </a>
           </li>
          
-          <li class="nav-header" style="font-weight:500; color:#999;">Services</li>
-          <li class="nav-item">
+        
+          <li class="nav-item {% block ser %}
+            
+          {% endblock ser %}">
             <a href="/service" class="nav-link">
               <i class="fas fa-check"></i>
               <p>
@@ -118,8 +117,10 @@
             </a>
           </li>
          
-          <li class="nav-header" style="font-weight:500; color:#999;">Know Your Doctor</li>
-          <li class="nav-item">
+         
+          <li class="nav-item {% block doc %}
+            
+          {% endblock doc %}">
             <a href="/docadd" class="nav-link">
               <i class="fas fa-check"></i>
               <p>
@@ -128,8 +129,10 @@
             </a>
           </li>
          
-          <li class="nav-header" style="font-weight:500; color:#999;">Patient Services</li>
-          <li class="nav-item">
+         
+          <li class="nav-item {% block pser %}
+            
+          {% endblock pser %}">
             <a href="/pservice" class="nav-link">
               <i class="fas fa-check"></i>
               <p>
@@ -146,8 +149,10 @@
             </a>
           </li> -->
           
-          <li class="nav-header" style="font-weight:500; color:#999;">Health Education</li>
-          <li class="nav-item">
+       
+          <li class="nav-item {% block health %}
+            
+          {% endblock health %}">
             <a href="/health" class="nav-link">
               <i class="fas fa-check"></i>
               <p>
@@ -156,8 +161,10 @@
             </a>
           </li>
 
-          <li class="nav-header" style="font-weight:500; color:#999;">Contact Us</li>
-          <li class="nav-item">
+          
+          <li class="nav-item {% block con %}
+            
+          {% endblock con %}">
             <a href="/contact" class="nav-link">
               <i class="fas fa-check"></i>
               <p>
@@ -165,7 +172,9 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% block direction %}
+            
+          {% endblock direction %}">
             <a href="/direction" class="nav-link">
               <i class="fas fa-check"></i>
               <p>
