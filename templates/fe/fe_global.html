@@ -90,7 +90,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary"
                          aria-labelledby="navbarDropdownMenuLink">
-                        {% for i in fetchdp %}
+                        {% for i in fetchdp[1:] %}
                         <a class="dropdown-item" href="/deptshow?id={{i.id}}">{{i.dept_title}}</a>  
                         {% endfor %}
                           

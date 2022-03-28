@@ -18,7 +18,9 @@
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Text</label>
+              {{ ckeditor.load() }}
               {{ ckeditor.create(value= fetchserv.serv_text|safe) }}
+              {{ ckeditor.config() }}
             </div>
             <div class="mb-3">
               <button type="submit" class="btn btn-dark">Submit</button> <br>

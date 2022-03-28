@@ -111,20 +111,28 @@ def add():
 def edit():
 
     if settings.request.method=='POST':
-      doc_title  = settings.request.form['doc_title']
-      doc_name= settings.request.form['doc_name']
-      doc_text= settings.request.form['ckeditor']
-      doc_img = settings.request.files['doc_img']
-      fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(doc_img.filename)
-      doc_img.save(fname)
-      id= settings.request.form['id']
-      fetch= models.Docdetails.query.filter_by(id=id).first()
-      fetch.doc_title=doc_title
-      fetch.doc_name=doc_name
-      fetch.doc_text=doc_text
-      fetch.doc_img=fname
-      settings.db.session.commit()
-      return settings.redirect('/docadd')
+        id= settings.request.form['id']
+        fetch= models.Docdetails.query.filter_by(id=id).first()
+        doc_title  = settings.request.form['doc_title']
+        doc_name= settings.request.form['doc_name']
+        doc_text= settings.request.form['ckeditor']
+        doc_img = settings.request.files['doc_img']
+        doc_img.seek(0,settings.os.SEEK_END)
+        if doc_img.tell() == 0:
+            pass
+        else:
+
+            doc_img.seek(0)
+            fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(doc_img.filename)
+            doc_img.save(fname)
+            fetch.doc_img=fname
+      
+        fetch.doc_title=doc_title
+        fetch.doc_name=doc_name
+        fetch.doc_text=doc_text
+        
+        settings.db.session.commit()
+        return settings.redirect('/docadd')
 
     id= settings.request.args['id']
     fetchdetails= models.Docdetails.query.filter_by(id=id).first()
@@ -177,6 +185,7 @@ def serve():
         if serv_img.tell() == 0:
             pass
         else:
+            serv_img.seek(0)
             fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(serv_img.filename)
             serv_img.save(fname)
             fetch.serv_img=fname
@@ -282,9 +291,11 @@ def pedit():
         pat_title= settings.request.form['pat_title']
         text= settings.request.form['ckeditor']
         img= settings.request.files['img']
+        img.seek(0,settings.os.SEEK_END)
         if img.tell() == 0:
             pass
         else:
+            img.seek(0)
             fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(img.filename)
             img.save(fname)
             fetchdep.img=fname
