@@ -9,16 +9,16 @@ menu-open
     <div class="col-md-6">
       <div class="main-card mb-3 card">
         <div class="card-body">
+          <div class="card-title">Add Department</div>
+          <br />
+          <hr />
           <form action="/dept" method="post" enctype="multipart/form-data">
 
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Title</label>
               <input type="text" class="form-control" name="dept_title" value="{{fetchdep.dept_title}}">
             </div>
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Image</label>
-              <input class="form-control" name="dept_img" value="{{fetchdep_img}}" type="file" id="formFile">
-            </div>
+           
 
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Text</label>
@@ -41,7 +41,7 @@ menu-open
               <tr>
                 <th scope="col">Sr.No</th>
                 <th scope="col">Title</th>
-                <th scope="col">Image</th>
+               
 
                 <th scope="col">Actions</th>
 
@@ -55,12 +55,12 @@ menu-open
                 <th scope="row">{{loop.index}}</th>
                 <th scope="row">{{i.dept_title}}</th>
 
-                <td><img src={{i.dept_img}} alt="" width="44px"></td>
+                
 
 
 
 
-                <td><a href="/deptedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="/deptedit?id={{i.id}}"><i class="fas fa-edit"></i></a>&nbsp;<a href="/depdel?id={{i.id}}"><i class="fas fa-trash"></i></a></td>
 
                 </td>
 

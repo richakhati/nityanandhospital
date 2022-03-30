@@ -36,7 +36,7 @@ class Aboutus(settings.db.Model):
 class Departments(settings.db.Model):
     id= settings.db.Column(settings.db.Integer, primary_key= True)
     dept_text= settings.db.Column(settings.db.String)
-    dept_img= settings.db.Column(settings.db.String)
+
     dept_title= settings.db.Column(settings.db.String)
 
 ################## DEPARTMENTS SECTION END HERE ######################

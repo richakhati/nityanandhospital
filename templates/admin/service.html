@@ -9,6 +9,9 @@ menu-open
     <div class="col-md-6">
       <div class="main-card mb-3 card">
         <div class="card-body">
+          <div class="card-title">Add Service</div>
+          <br />
+          <hr />
           <form action="/service" method="post" enctype="multipart/form-data">
 
             <div class="mb-3">
@@ -61,7 +64,7 @@ menu-open
 
 
 
-                <td><a href="/servedit?id={{i.id}}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="/servedit?id={{i.id}}"><i class="fas fa-edit"></i></a>&nbsp;<a href="/servdelete?id={{i.id}}"><i class="fas fa-trash"></i></a></td>
 
                 </td>
 

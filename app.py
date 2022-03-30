@@ -139,6 +139,15 @@ def edit():
     fetchall= models.Docdetails.query.all()
     return settings.render_template('admin/docedit.html', getinfo= fetchdetails,fetchall=fetchall)
 
+@app.route('/docdelete')
+def docdele():
+    id= settings.request.args['id']
+    fetchdetails= models.Docdetails.query.filter_by(id=id).first()
+    db.session.delete(fetchdetails)
+    db.session.commit()
+    return settings.redirect ('/docadd')
+
+
 @app.route('/docshow', methods=['GET','POST'])
 def drshow():
     
@@ -156,7 +165,7 @@ def docdet():
 
 ################################# DOCTOR ENDS HERE ################################ 
 
-################################ SERVVICES ENDS #################################
+################################ SERVICES ENDS #################################
     
 @app.route('/service', methods=['GET', 'POST'])
 def serv():
@@ -201,6 +210,14 @@ def serve():
     fetch= models.Service.query.all()
     return settings.render_template('admin/servedit.html', fetch=fetch,fetch1=fetch1)
 
+@app.route('/servdelete')
+def servdel():
+    id= settings.request.args['id']
+    fetch1= models.Service.query.filter_by(id=id).first()
+    db.session.delete(fetch1)
+    db.session.commit()
+    return settings.redirect ('/service')
+
 @app.route('/serviceshow', methods=['GET','POST'])
 def servshow():
     id= settings.request.args['id']
@@ -217,11 +234,8 @@ def servshow():
 def dep():
     if settings.request.method=="POST":
         dept_text= settings.request.form['ckeditor']
-        dept_img= settings.request.files['dept_img']
-        fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(dept_img.filename)
-        dept_img.save(fname)
         dept_title= settings.request.form['dept_title']
-        dep= models.Departments(dept_text=dept_text, dept_img=fname, dept_title= dept_title)
+        dep= models.Departments(dept_text=dept_text, dept_title= dept_title)
         settings.db.session.add(dep)
         settings.db.session.commit()
 
@@ -235,15 +249,6 @@ def depted():
         fetchdep= models.Departments.query.filter_by(id=id).first()
         dept_text= settings.request.form['ckeditor']
         dept_title= settings.request.form['dept_title']
-        file= settings.request.files['dept_img']
-        file.seek(0,settings.os.SEEK_END)
-        if file.tell() == 0:
-            pass
-        else:
-            fname= 'static/admin-assets/img/nnh/'+settings.secure_filename(file.filename)
-            file.save(fname)
-            
-            fetchdep.dept_img=fname
         
         
         fetchdep.dept_text=dept_text
@@ -256,6 +261,14 @@ def depted():
     fetchdept= models.Departments.query.filter_by(id=id).first()
     fetchdep= models.Departments.query.all()
     return settings.render_template('admin/deptedit.html', fetchdept=fetchdept,fetchdep=fetchdep)
+
+@app.route('/depdel')
+def depdel():
+    id= settings.request.args['id']
+    fetchdept= models.Departments.query.filter_by(id=id).first()
+    db.session.delete(fetchdept)
+    db.session.commit()
+    return settings.redirect ('/dept')
 
 @app.route('/deptshow', methods=['GET', 'POST'])
 def show():
@@ -308,6 +321,14 @@ def pedit():
     fetchpat= models.Pservices.query.filter_by(id=id).first()
     fetchpatient= models.Pservices.query.all()
     return settings.render_template('admin/pservedit.html', fetchpat=fetchpat, fetchpatient=fetchpatient) 
+
+@app.route('/patientdel')
+def patientdel():
+    id= settings.request.args['id']
+    fetchpat= models.Pservices.query.filter_by(id=id).first()
+    db.session.delete(fetchpat)
+    db.session.commit()
+    return settings.redirect ('/pservice')
 
 @app.route('/patientshow', methods=['GET', 'POST'])
 def patshow():
@@ -372,6 +393,14 @@ def educat():
     fetched= models.Healthedu.query.filter_by(id=id).first()
     fetchedu= models.Healthedu.query.all()
     return settings.render_template('admin/healthedu.html', fetched=fetched, fetchedu=fetchedu)
+
+@app.route('/healdel')
+def healdel():
+    id= settings.request.args['id']
+    fetched= models.Healthedu.query.filter_by(id=id).first()
+    db.session.delete(fetched)
+    db.session.commit()
+    return settings.redirect ('/health')
     
 @app.route('/healthshow', methods=['GET','POST'])
 def healshow():
@@ -379,7 +408,9 @@ def healshow():
     fetched= models.Healthedu.query.filter_by(id=id).first()
     fetchedu= models.Healthedu.query.all()
 
-    return settings.render_template('fe/healthy_education.html', fetched=fetched, fetchedu=fetchedu)    
+    return settings.render_template('fe/healthy_education.html', fetched=fetched, fetchedu=fetchedu)   
+
+
 
 ########################### ABOUT STARTS ###########################
 
@@ -446,22 +477,28 @@ def consmtp():
 @app.route('/contact', methods=['GET', 'POST'])
 def con():
     if settings.request.method=='POST':
-        con_title= settings.request.form('con_title')
-        img= settings.request.files('img')
+        con_title= settings.request.form['con_title']
+        img= settings.request.files['img']
         fname= 'static/admin-assets/img/nnh'+settings.secure_filename(img.filename)
         img.save(fname)
-        id= settings.request.form('id')
-        fetchcontact= models.Contactus.query.filter_by(id=id).first()
+        fetchcontact= models.Contactus.query.filter_by(id=1).first()
         fetchcontact.con_title=con_title
-        fetchcontact.img=img
+        fetchcontact.img=fname
         settings.db.session.commit()
         return settings.redirect('/contact')
 
-    
     fetchcontact= models.Contactus.query.filter_by(id=1).first()
     fetch= models.Contactus.query.all()
     
     return settings.render_template('admin/contactedit.html', fetchcontact=fetchcontact, fetch=fetch)
+
+@app.route('/condel')
+def condel():
+    
+    fetchcontact= models.Contactus.query.filter_by(id=1).first()
+    db.session.delete(fetchcontact)
+    db.session.commit()
+    return settings.redirect ('/contact')
 
 @app.route('/contactshow', methods=['GET','POST'])
 def cshow():
