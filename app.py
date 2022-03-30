@@ -327,12 +327,12 @@ def mail():
         name= settings.request.form['name']
         mail= settings.request.form['mail']
         phone= settings.request.form['phone']
-        doctor= settings.request.form['doctor']
+        doctors= settings.request.form['doctors']
         date= settings.request.form['date']
         subject= settings.request.form['subject']
         
         msg  = settings.Message('Hello', sender = app.config['MAIL_USERNAME'], recipients =['riiichakhati18@gmail.com'])
-        msg.body = "Name: "+ name + "\nEmail: "+ mail +"\nDate of appointment: "+ date + "\nYour Phone no.: "+ phone+ "\nSelect Your Doctor :" + doctor + "\nYour subject" + subject
+        msg.body = "Name: "+ name + "\nEmail: "+ mail +"\nDate of appointment: "+ date + "\nYour Phone no.: "+ phone+ "\nSelect Your Doctor :" + doctors + "\nYour subject" + subject
         
         settings.mail.send(msg)
     fetchpatient= models.Pservices.query.all()  
