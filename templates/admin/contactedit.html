@@ -18,8 +18,7 @@ menu-open
             <div class="mb-3">
               <input type="hidden" id='id' name='id' value="{{fetchcontact.id}}">
 
-              <label for="exampleFormControlInput1" class="form-label">Title</label>
-              <input type="text" class="form-control" name="con_title" value="{{fetchcontact.con_title}}">
+             
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Image</label>
@@ -39,7 +38,7 @@ menu-open
             <thead>
               <tr>
                 <th scope="col">Sr.No</th>
-                <th scope="col">Title</th>
+               
                 <th scope="col">Image</th>
                 <th scope="col">Actions</th>
 
@@ -55,11 +54,11 @@ menu-open
 
 
 
-                <td>{{i.con_title}}</td>
+               
 
                 <td><img src="{{i.img}}" alt="" width="44px"></td>
 
-                <td><a href="/contact?id={{i.id}}"><i class="fas fa-edit"></i></a>&nbsp;<a href="/condel?id={{i.id}}"><i class="fas fa-trash"></i></a></td>
+                <td><a href="/contact?id={{i.id}}" style="color: black;"><i class="fas fa-edit"></i></a>&nbsp;<a href="/condel?id={{i.id}}" style="color: black;"><i class="fas fa-trash"></i></a></td>
 
 
                 </td>

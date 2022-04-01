@@ -51,6 +51,14 @@ def admin():
 
     return settings.render_template('admin/login.html')
 
+@app.route("/logout",methods=['GET','POST'])
+def logout():
+    try:
+        settings.session.clear()
+        return settings.redirect("/login")
+    except Exception as e:
+        print(e)
+
 ########################## HOME ######################################
 @app.route('/', methods=['GET', 'POST'])
 def fe():
@@ -477,12 +485,12 @@ def consmtp():
 @app.route('/contact', methods=['GET', 'POST'])
 def con():
     if settings.request.method=='POST':
-        con_title= settings.request.form['con_title']
+       
         img= settings.request.files['img']
         fname= 'static/admin-assets/img/nnh'+settings.secure_filename(img.filename)
         img.save(fname)
         fetchcontact= models.Contactus.query.filter_by(id=1).first()
-        fetchcontact.con_title=con_title
+       
         fetchcontact.img=fname
         settings.db.session.commit()
         return settings.redirect('/contact')
@@ -499,6 +507,7 @@ def condel():
     db.session.delete(fetchcontact)
     db.session.commit()
     return settings.redirect ('/contact')
+
 
 @app.route('/contactshow', methods=['GET','POST'])
 def cshow():
